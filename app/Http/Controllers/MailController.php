@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OTPMailer;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendOTPMailJob;
 
 class MailController extends Controller
 {
     public function sendMail()
     {
-        Mail::to(request()->email)->send(new OTPMailer());
+        dispatch(new SendOTPMailJob((Object) request()->all()));
         return back()->with('success', 'Mail Sent');
     }
 }
