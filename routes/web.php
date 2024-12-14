@@ -12,3 +12,4 @@ Route::get('/login', function () {
 });
 
 Route::post('/otp-mail', [MailController::class, 'sendMail']);
+Route::post('/priority-mail', [MailController::class, 'sendPriorityMail']);

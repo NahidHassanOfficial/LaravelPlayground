@@ -22,7 +22,17 @@ class SendOTPMailJob implements ShouldQueue
      */
     public function handle(): void
     {
+        if ($this->request->email == 'a@a.com') {
+            throw new \Exception("this user not allowed");
+        }
+
         Mail::to($this->request->email)->send(new OTPMailer());
+        echo "mail success";
+    }
+
+    public function failed($exception)
+    {
+        Mail::to('admin@admin.com')->send(new OTPMailer());
 
     }
 }
