@@ -32,7 +32,7 @@ class SendOTPMailJob implements ShouldQueue
 
     public function failed($exception)
     {
-        Mail::to('admin@admin.com')->send(new OTPMailer());
+        Mail::to('failed@admin.com')->send(new OTPMailer());
 
     }
 }

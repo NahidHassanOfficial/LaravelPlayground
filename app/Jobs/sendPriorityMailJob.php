@@ -24,4 +24,10 @@ class sendPriorityMailJob implements ShouldQueue
     {
         Mail::to($this->mailTo)->send(new PriorityMail());
     }
+
+    public function failed($exception)
+    {
+        Mail::to('failed@priority.com')->send(new PriorityMail());
+
+    }
 }
