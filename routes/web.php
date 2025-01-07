@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,3 +14,8 @@ Route::get('/login', function () {
 
 Route::post('/otp-mail', [MailController::class, 'sendMail']);
 Route::post('/priority-mail', [MailController::class, 'sendPriorityMail']);
+
+Route::get('/task', function () {
+    return view('task');
+});
+Route::post('/task-complete', [TaskController::class, 'taskComplete']);
