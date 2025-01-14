@@ -1,21 +1,22 @@
 <?php
-
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewsLetterMailNotification extends Notification
+class NewsLetterMailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    private $url;
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($signedUrl = "#")
     {
-        //
+        $this->url = $signedUrl;
     }
 
     /**
@@ -35,7 +36,7 @@ class NewsLetterMailNotification extends Notification
     {
         return (new MailMessage)
             ->line('The is your weekly newsletter')
-            ->action('Notification Action', url('/'))
+            ->action('Notification Action', $this->url)
             ->line('Thank you for using our application!');
     }
 
