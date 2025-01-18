@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserFormController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,3 +37,6 @@ Route::get('/auth/google-auth', [SocialiteController::class, 'loginGoogle'])->na
 Route::get('/auth/google-auth-callback', [SocialiteController::class, 'handleGoogleCallback'])->name('login.redirect');
 
 Route::get('/products', [ProductController::class, 'getProducts']);
+
+Route::get('/form-enum', [UserFormController::class, 'show']);
+Route::post('/dummy-form', [UserFormController::class, 'createDummyUser']);
