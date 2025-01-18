@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,5 @@ Route::get('/socialite', function () {
 });
 Route::get('/auth/google-auth', [SocialiteController::class, 'loginGoogle'])->name('login.google');
 Route::get('/auth/google-auth-callback', [SocialiteController::class, 'handleGoogleCallback'])->name('login.redirect');
+
+Route::get('/products', [ProductController::class, 'getProducts']);
