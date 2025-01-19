@@ -6,11 +6,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserFormController;
+use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware(LocalizationMiddleware::class);
 
 Route::get('/login', function () {
     return view('login');
