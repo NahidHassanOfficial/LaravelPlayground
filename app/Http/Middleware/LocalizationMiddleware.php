@@ -14,7 +14,7 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->query('lang') === 'bn') {
+        if ($request->cookie('lang') == 'bn') {
             app()->setLocale('bn');
         }
         return $next($request);

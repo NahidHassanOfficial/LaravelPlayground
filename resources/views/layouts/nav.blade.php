@@ -20,46 +20,50 @@
                     </a>
                 </div>
 
-                <div class="flex items-center flex-row-reverse">
-                    <div class="flex items-center md:order-2 space-x-1 md:space-x-0 ">
+                <div class="flex items-center ">
+                    <div x-data="{ lang: '' }" x-init="lang = getCookie('lang')"
+                        class="flex items-center md:order-2 space-x-1 md:space-x-0 ">
                         <button type="button" data-dropdown-toggle="language-dropdown-menu"
                             class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                            English
+                            <div x-show="lang === 'bn'">
+                                Bangla
+                            </div>
+                            <div x-show="lang === 'en'">
+                                English
+                            </div>
                         </button>
                         <!-- Dropdown -->
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
                             id="language-dropdown-menu">
                             <ul class="py-2 font-medium" role="none">
                                 <li>
-                                    <a href="#"
+                                    <span
+                                        x-on:click="document.cookie = 'lang=en; path=/; max-age=2592000; SameSite=Lax;'; location.reload();"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">
                                         <div class="inline-flex items-center">
                                             English
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <span
+                                        x-on:click="document.cookie = 'lang=bn; path=/; max-age=2592000; SameSite=Lax;'; location.reload();"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">
                                         <div class="inline-flex items-center">
                                             Bangla
                                         </div>
-                                    </a>
+                                    </span>
                                 </li>
                             </ul>
                         </div>
-                        <button data-collapse-toggle="navbar-language" type="button"
-                            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                            aria-controls="navbar-language" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 17 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                            </svg>
-                        </button>
+                        <script>
+                            function getCookie(name) {
+                                const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+                                return match ? match[2] : null;
+                            }
+                        </script>
                     </div>
                     <div class="flex items-center ms-3">
                         <div>
